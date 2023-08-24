@@ -1,0 +1,7 @@
+{
+  "name": "PGY4121_progMovil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
