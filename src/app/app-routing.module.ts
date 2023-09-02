@@ -27,7 +27,11 @@ const routes: Routes = [
   {
     path: 'access',
     loadChildren: () => import('./access/access.module').then( m => m.AccessPageModule)
+  },  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
+
 
 ];
 
