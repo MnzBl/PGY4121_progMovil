@@ -7,8 +7,6 @@
 
  .btn-login{
     display: flex;
-    margin-inline: 200px;
-    margin-top: 40px;
  }
 
  .contraseña{
@@ -17,5 +15,7 @@
  }
 
  .registro{
-    height: 1px;  
+    height: 1px;
+    display: flex;
+    align-items: end;
  }

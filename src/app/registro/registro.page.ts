@@ -13,29 +13,32 @@ export class RegistroPage implements OnInit {
     nombre:"",
     correo:"",
     psw1:"",
-    psw2:""
+    psw2:"",
+    usuario:""
   }
+
+  public lista = [this.registrar]
 
   constructor(public btn:AlertController, private router: Router) { }
 
   ngOnInit() {
 
-    }
+  }
 
-    async fnbtnregistro(){
+  async alrtregistro(){
 
-      let miAlerta = await this.btn.create({
-        header: 'Anuncio',
-        message: 'Cuenta creada',
-        buttons: ['OK']
-      });
-      miAlerta.present();
+    let miAlerta = await this.btn.create({
+      header: 'Anuncio',
+      message: 'Cuenta creada',
+      buttons: ['OK']
+    });
+    miAlerta.present();
   
-      this.router.navigate(['/login'])
+    this.router.navigate(['/login'])
   
-    }  
+  }  
 
-  async errorpsw(){
+  async alrterrorpsw(){
 
     let miAlerta = await this.btn.create({
       header: 'Anuncio',
@@ -44,18 +47,67 @@ export class RegistroPage implements OnInit {
     });
     miAlerta.present();
 
+  }
+
+  async alrtvacios(){
+
+    let miAlerta = await this.btn.create({
+      header: 'Anuncio',
+      message: 'Todos los campos deben ser ingresados',
+      buttons: ['OK']
+    });
+    miAlerta.present();
 
   }
 
-  validarpsw(){
+  async alrterrorusuario(){
+
+    let miAlerta = await this.btn.create({
+      header: 'Anuncio',
+      message: 'Elegir tipos de usuario',
+      buttons: ['OK']
+    });
+    miAlerta.present();
+
+  }
+
+  fnvalidarpsw(){
 
     if(this.registrar.psw1 == this.registrar.psw2){
 
-      this.fnbtnregistro()
+      this.alrtregistro()
 
     }else{
 
-      this.errorpsw()
+      this.alrterrorpsw()
+
+    }
+
+  }
+
+  fnvalidarusuario(){
+
+    if(this.registrar.usuario!="chofer" && this.registrar.usuario!="pasajero"){
+
+      this.alrterrorusuario()
+
+    }else{
+
+      this.fnvalidarpsw()
+
+    }
+
+  }
+
+  fnvalidarvacios(){
+
+    if(this.registrar.nombre=="" || this.registrar.correo=="" || this.registrar.psw1=="" || this.registrar.psw2==""){
+
+      this.alrtvacios()
+
+    }else{
+
+      this.fnvalidarusuario()
 
     }
 
