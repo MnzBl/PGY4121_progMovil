@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { registerInput } from './model/registro.model';
+import { usuarios } from '../basedatos/lista';
 
 @Component({
   selector: 'app-registro',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegistroPage implements OnInit {
 
-  public registrar= {
+  public registrar: registerInput = {
     nombre:"",
     correo:"",
     psw1:"",
@@ -17,7 +19,14 @@ export class RegistroPage implements OnInit {
     usuario:""
   }
 
-  public lista = [this.registrar]
+  public nuevoUsuario = {
+    nombre: "",
+    correo: "",
+    psw: "",
+    usuario: ""
+  }
+
+  public lista = usuarios;
 
   constructor(public btn:AlertController, private router: Router) { }
 
@@ -71,9 +80,16 @@ export class RegistroPage implements OnInit {
 
   }
 
-  fnvalidarpsw(){
+  fnvalidarpsw(usuarioARegistar: registerInput){
 
     if(this.registrar.psw1 == this.registrar.psw2){
+      this.nuevoUsuario.nombre = usuarioARegistar.nombre;
+      this.nuevoUsuario.correo = usuarioARegistar.correo;
+      this.nuevoUsuario.psw = usuarioARegistar.psw1;
+      this.nuevoUsuario.usuario = usuarioARegistar.usuario;
+      this.lista.push(this.nuevoUsuario);
+
+      console.log(this.lista)
 
       this.alrtregistro()
 
@@ -85,7 +101,7 @@ export class RegistroPage implements OnInit {
 
   }
 
-  fnvalidarusuario(){
+  fnvalidarusuario(usuario: registerInput){
 
     if(this.registrar.usuario!="chofer" && this.registrar.usuario!="pasajero"){
 
@@ -93,13 +109,13 @@ export class RegistroPage implements OnInit {
 
     }else{
 
-      this.fnvalidarpsw()
+      this.fnvalidarpsw(usuario)
 
     }
 
   }
 
-  fnvalidarvacios(){
+  fnvalidarvacios(usuario: registerInput){
 
     if(this.registrar.nombre=="" || this.registrar.correo=="" || this.registrar.psw1=="" || this.registrar.psw2==""){
 
@@ -107,7 +123,7 @@ export class RegistroPage implements OnInit {
 
     }else{
 
-      this.fnvalidarusuario()
+      this.fnvalidarusuario(usuario)
 
     }
 

@@ -14,11 +14,11 @@
 
   <ion-card-content>
 
-    <ion-input class="center-input-login">Usuario</ion-input>
+    <ion-input [(ngModel)]="user.correo">Correo electronico</ion-input>
 
-    <ion-input class="center-input-login">Contraseña</ion-input>
+    <ion-input [(ngModel)]="user.psw">Contraseña</ion-input>
 
-    <ion-button class="btn-login">Ingresar</ion-button>
+    <ion-button class="btn-login" (click)="fnvalidarvacios(user)">Ingresar</ion-button>
 
     <ion-card-content class="contraseña">
 
