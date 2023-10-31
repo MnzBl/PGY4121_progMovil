@@ -5,7 +5,6 @@ import { registerInput } from './model/registro.model';
 import { usuarios } from '../basedatos/lista';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-registro',
@@ -40,17 +39,6 @@ export class RegistroPage implements OnInit {
     private http: HttpClient) { }
 
   ngOnInit() {
-
-    const url = this.sburl+"/rest/v1/users";
-
-    const headers = {"apikey": this.sbapikey};
-
-    this.http.get<any>(url,{headers}).
-      subscribe(res => 
-      {console.log(res);
-      this.users = res.results;
-    
-    })
 
   }
 
