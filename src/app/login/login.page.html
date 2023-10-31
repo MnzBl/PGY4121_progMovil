@@ -1,19 +1,29 @@
 <ion-card class="card-box">
 
-  <ion-card-header class="registro">
+  <ion-card-header class="registro-2">
 
-    <a id="link-registro" href="/registro">Registrarse</a>
+    <p>¿No tienes una cuenta?</p>
 
   </ion-card-header>
+
+  <ion-card-header class="registro">
+
+    <a id="link-registro" href="/registro">Registrate</a>
+
+  </ion-card-header>
+
 
   <ion-card-header class="center-card">
 
-    <ion-card-title>Inicio sesión</ion-card-title>
+    <ion-card-title class="titulo-inicio-sesion">Inicio sesión</ion-card-title>
+
+    <img src="../../assets/746839fc-deb9-4030-b5af-528550974883.png" alt="logo-tellevoapp" class="logo-tellevoapp">
 
   </ion-card-header>
 
-  <ion-card-content>
+  <ion-card-content class="input-login">
 
+<<<<<<< HEAD
     <ion-input [(ngModel)]="loginuser.correo">Correo electronico</ion-input>
     <ion-input [(ngModel)]="loginuser.psw">Contraseña</ion-input>
 
@@ -28,12 +38,23 @@
     </ion-list>
 
     <ion-button class="btn-login" (click)="fnvalidarvacios(loginuser)">Ingresar</ion-button>
+=======
+    <ion-input [(ngModel)]="user.correo" class="input-correo-login" color="color-principal-duoc">Correo electronico</ion-input>
 
-    <ion-card-content class="contraseña">
+    <ion-input [(ngModel)]="user.psw" type="password" class="input-contraseña-login" color="color-principal-duoc">Contraseña</ion-input>
 
-      <a href="/restore-password">Recuperar contraseña</a>
+    <a href="/restore-password" class="link-recuperar-contraseña">¿Recuperar contraseña?</a>
+>>>>>>> dcd55fb163f07ed334b1fa3b63fe4a8af4f7fcac
 
-    </ion-card-content>
+    <ion-button class="btn-login" (click)="fnvalidarvacios(user)" color="login-btn">Ingresar</ion-button>
+
+    
+
+    <ion-content>
+
+      <a id="link-registro" href="/registro">Registrarse</a>
+      
+    </ion-content>
 
   </ion-card-content>
 

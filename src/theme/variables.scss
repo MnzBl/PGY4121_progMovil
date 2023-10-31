@@ -35,6 +35,8 @@
   --ion-color-success-shade: #28ba62;
   --ion-color-success-tint: #42d77d;
 
+  
+
   /** warning **/
   --ion-color-warning: #ffc409;
   --ion-color-warning-rgb: 255, 196, 9;
@@ -74,9 +76,25 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+    /** login-btn **/
+  --ion-color-login-btn: #ffb700;
+  --ion-color-login-btn-rgb: 255,183,0;
+  --ion-color-login-btn-contrast: #000000;
+  --ion-color-login-btn-contrast-rgb: 0,0,0;
+  --ion-color-login-btn-shade: #e0a100;
+  --ion-color-login-btn-tint: #ffbe1a;
+
+  /** color-principal-duoc **/
+  --ion-color-color-principal-duoc: #012c56;
+	--ion-color-color-principal-duoc-rgb: 1,44,86;
+	--ion-color-color-principal-duoc-contrast: #ffffff;
+	--ion-color-color-principal-duoc-contrast-rgb: 255,255,255;
+	--ion-color-color-principal-duoc-shade: #01274c;
+	--ion-color-color-principal-duoc-tint: #1a4167;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   /*
    * Dark Colors
    * -------------------------------------------
@@ -153,7 +171,7 @@
    */
 
   .ios body {
-    --ion-background-color: #000000;
+    --ion-background-color: #0000;
     --ion-background-color-rgb: 0,0,0;
 
     --ion-text-color: #ffffff;
