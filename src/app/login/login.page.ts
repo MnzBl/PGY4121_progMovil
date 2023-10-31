@@ -4,6 +4,8 @@ import { usuarios } from '../basedatos/lista';
 import { AlertController } from '@ionic/angular';
 import { loginInput } from './model/login.model';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -11,19 +13,28 @@ import { loginInput } from './model/login.model';
 })
 export class LoginPage implements OnInit {
 
-  public user: loginInput = {
+  public loginuser: loginInput = {
+    correo: "",
+    psw: "",
+    usuario: ""
+  }
+
+  public bduser = {
+    id: "",
+    nombre: "",
     correo: "",
     psw: ""
   }
 
-  public bdlista = usuarios;
 
-  constructor(private router: Router,public btn:AlertController) { }
+  private sburl = "https://agjhsdqlwgqzokelqqrd.supabase.co";
+
+  private sbapikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnamhzZHFsd2dxem9rZWxxcXJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU0ODUyNzksImV4cCI6MjAxMTA2MTI3OX0.RAzy6n71Wfv7CQi9acKyaqGy9YPAg4lSPpvfqcjbZik";
+
+  constructor(private router: Router,public btn:AlertController, private http: HttpClient) { }
 
   ngOnInit() {
   }
-
-  // const result = this.bdlista.find((usuario) => user.usuario === usuario.usuario && user.pwd === usuario.pwd)
 
   async alrtvacios(){
 
@@ -47,34 +58,83 @@ export class LoginPage implements OnInit {
 
   }
 
-  fnvalidaruser(user: loginInput){
+  fnvalidaruser(loginuser: loginInput){
 
-    const result = this.bdlista.find((usuario) => user.correo === usuario.correo && user.psw === usuario.psw);
+    const headers = {"apikey": this.sbapikey};
 
-    if(!result){
+    const correo = this.loginuser.correo;
+    const psw = this.loginuser.psw;
+    const tipousuario = this.loginuser.usuario;
 
-      this.alrtUserNoEncontrado()
-      return
+    console.log(loginuser)
 
-    } else {
+    if (tipousuario=="pasajero"){
 
-      console.log(result)
-      this.router.navigate(['/home'])
-      return result;
+    const url = this.sburl+"/rest/v1/pasajero?correo=eq."+correo;
 
-    }
+    console.log(url);
+
+    this.http.get<any>(url,{headers}).subscribe((res) => {
+      console.log(res);
+      this.bduser = res[0];
+
+      console.log(correo+"-"+this.bduser.correo)
+      console.log(psw+"-"+this.bduser.psw)
+      
+      if(correo==this.bduser.correo && psw==this.bduser.psw){
+
+        console.log("si coinciden");
+
+        this.router.navigate(['/home']);
+
+      } else {
+
+        console.log("error en las contraseñas")
+  
+      }
+
+    });
+ 
+    } else if (tipousuario=="conductor"){
+
+      const url = this.sburl+"/rest/v1/conductor?correo=eq."+correo;
+
+      console.log(url);
+
+    this.http.get<any>(url,{headers}).subscribe(res => {
+      console.log(res);
+      this.bduser = res[0];
+    
+      console.log(correo+"-"+this.bduser.correo)
+      console.log(psw+"-"+this.bduser.psw)
+
+      if(correo==this.bduser.correo && psw==this.bduser.psw){
+
+        console.log("si coinciden");
+
+        this.router.navigate(['/home']);
+
+      } else  {
+
+        console.log("error en las contraseñas")
+
+      }
+    
+    });
+
+  }
     
   }
 
-  fnvalidarvacios(user: loginInput){
+  fnvalidarvacios(loginuser: loginInput){
 
-    if(this.user.correo=="" || this.user.psw==""){
+    if(this.loginuser.correo=="" || this.loginuser.psw==""){
 
       this.alrtvacios()
 
     }else{
 
-      this.fnvalidaruser(user)
+      this.fnvalidaruser(loginuser)
 
     }
 

@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { registerInput } from './model/registro.model';
 import { usuarios } from '../basedatos/lista';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -22,15 +25,32 @@ export class RegistroPage implements OnInit {
   public nuevoUsuario = {
     nombre: "",
     correo: "",
-    psw: "",
-    usuario: ""
+    psw: ""
   }
 
   public lista = usuarios;
 
-  constructor(public btn:AlertController, private router: Router) { }
+  private sburl = "https://agjhsdqlwgqzokelqqrd.supabase.co";
+
+  private sbapikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnamhzZHFsd2dxem9rZWxxcXJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU0ODUyNzksImV4cCI6MjAxMTA2MTI3OX0.RAzy6n71Wfv7CQi9acKyaqGy9YPAg4lSPpvfqcjbZik";
+
+  users = []
+
+  constructor(public btn:AlertController, private router: Router,
+    private http: HttpClient) { }
 
   ngOnInit() {
+
+    const url = this.sburl+"/rest/v1/users";
+
+    const headers = {"apikey": this.sbapikey};
+
+    this.http.get<any>(url,{headers}).
+      subscribe(res => 
+      {console.log(res);
+      this.users = res.results;
+    
+    })
 
   }
 
@@ -82,16 +102,32 @@ export class RegistroPage implements OnInit {
 
   fnvalidarpsw(usuarioARegistar: registerInput){
 
+    const headers = {"apikey": this.sbapikey};
+
     if(this.registrar.psw1 == this.registrar.psw2){
       this.nuevoUsuario.nombre = usuarioARegistar.nombre;
       this.nuevoUsuario.correo = usuarioARegistar.correo;
       this.nuevoUsuario.psw = usuarioARegistar.psw1;
-      this.nuevoUsuario.usuario = usuarioARegistar.usuario;
-      this.lista.push(this.nuevoUsuario);
 
-      console.log(this.lista)
+      if (this.registrar.usuario=="pasajero"){
 
-      this.alrtregistro()
+        const url = this.sburl+"/rest/v1/pasajero";
+
+        this.http.post(url,this.nuevoUsuario,{headers}).
+        subscribe(res => console.log(res));
+
+        this.alrtregistro()
+
+      } else if (this.registrar.usuario=="conductor"){
+
+        const url = this.sburl+"/rest/v1/conductor";
+
+        this.http.post(url,this.nuevoUsuario,{headers}).
+        subscribe(res => console.log(res));
+
+        this.alrtregistro()
+
+      }
 
     }else{
 
@@ -103,7 +139,7 @@ export class RegistroPage implements OnInit {
 
   fnvalidarusuario(usuario: registerInput){
 
-    if(this.registrar.usuario!="chofer" && this.registrar.usuario!="pasajero"){
+    if(this.registrar.usuario!="conductor" && this.registrar.usuario!="pasajero"){
 
       this.alrterrorusuario()
 
@@ -117,7 +153,8 @@ export class RegistroPage implements OnInit {
 
   fnvalidarvacios(usuario: registerInput){
 
-    if(this.registrar.nombre=="" || this.registrar.correo=="" || this.registrar.psw1=="" || this.registrar.psw2==""){
+    if(this.registrar.nombre=="" || this.registrar.correo=="" ||
+     this.registrar.psw1=="" || this.registrar.psw2==""){
 
       this.alrtvacios()
 
@@ -128,5 +165,8 @@ export class RegistroPage implements OnInit {
     }
 
   }
+
+   
+
 
 }

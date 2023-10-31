@@ -14,11 +14,20 @@
 
   <ion-card-content>
 
-    <ion-input [(ngModel)]="user.correo">Correo electronico</ion-input>
+    <ion-input [(ngModel)]="loginuser.correo">Correo electronico</ion-input>
+    <ion-input [(ngModel)]="loginuser.psw">Contraseña</ion-input>
 
-    <ion-input [(ngModel)]="user.psw">Contraseña</ion-input>
+    <ion-list>
+      <ion-item>
+        <ion-select [(ngModel)]="loginuser.usuario" placeholder="Seleccionar">
+          <div slot="label">Tipo de usuario</div>
+          <ion-select-option value="conductor">Conductorr</ion-select-option>
+          <ion-select-option value="pasajero">Pasajero</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
 
-    <ion-button class="btn-login" (click)="fnvalidarvacios(user)">Ingresar</ion-button>
+    <ion-button class="btn-login" (click)="fnvalidarvacios(loginuser)">Ingresar</ion-button>
 
     <ion-card-content class="contraseña">
 
