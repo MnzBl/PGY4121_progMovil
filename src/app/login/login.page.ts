@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
   constructor(private router: Router,
               public btn:AlertController,
               private http: HttpClient,
-              private dataServide: DataService) { }
+              private dataService: DataService) { }
 
   ngOnInit() {
   }
@@ -89,9 +89,9 @@ export class LoginPage implements OnInit {
 
         console.log("si coinciden");
 
-        this.dataServide.misDatos = res[0];
+        this.dataService.misDatos = res[0];
 
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home-pasajero']);
 
         this.loginuser.correo="";
         this.loginuser.psw="";
@@ -122,7 +122,7 @@ export class LoginPage implements OnInit {
 
         console.log("si coinciden");
 
-        this.dataServide.misDatos = res[0];
+        this.dataService.misDatos = res[0];
 
         this.router.navigate(['/home']);
 

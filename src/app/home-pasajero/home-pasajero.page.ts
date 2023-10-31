@@ -5,13 +5,12 @@ import { AlertController } from '@ionic/angular';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-home-pasajero',
+  templateUrl: './home-pasajero.page.html',
+  styleUrls: ['./home-pasajero.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePasajeroPage implements OnInit {
 
   public userLogin = {
 
@@ -26,6 +25,7 @@ export class HomePage implements OnInit {
 
   private sbapikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnamhzZHFsd2dxem9rZWxxcXJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU0ODUyNzksImV4cCI6MjAxMTA2MTI3OX0.RAzy6n71Wfv7CQi9acKyaqGy9YPAg4lSPpvfqcjbZik";
 
+
   constructor(private dataService: DataService,
     private router: Router,
     private http: HttpClient,
@@ -38,13 +38,15 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
 
+    console.log(this.userLogin.nombre)
+
   }
 
-  async alrPasajero(){
+  async alrConductor(){
 
     const alert = await this.alertController.create({
 
-      header: "Al parecer no tienes una cuenta de Conductor ¿Quieres crear una?",
+      header: "Al parecer no tienes una cuenta de Pasajero ¿Quieres crear una?",
       buttons: [
         {
           text: 'Sí',
@@ -68,11 +70,11 @@ export class HomePage implements OnInit {
 
   }
 
-  fnPasajero(){
+  fnConductor(){
 
     const headers = {"apikey": this.sbapikey};
 
-    const url = this.sburl+"/rest/v1/pasajero?correo=eq."+this.userLogin.correo;
+    const url = this.sburl+"/rest/v1/conductor?correo=eq."+this.userLogin.correo;
 
     console.log(url);
 
@@ -83,11 +85,11 @@ export class HomePage implements OnInit {
 
       if(this.bd.length=0){
 
-        this.alrPasajero();
+        this.alrConductor();
 
       } else {
 
-        this.router.navigate(['/home-pasajero']);
+        this.router.navigate(['/home']);
 
       }
 
