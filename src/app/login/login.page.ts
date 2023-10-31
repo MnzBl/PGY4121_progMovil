@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { loginInput } from './model/login.model';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataService } from '../basedatos/datosLogin';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,10 @@ export class LoginPage implements OnInit {
 
   private sbapikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnamhzZHFsd2dxem9rZWxxcXJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU0ODUyNzksImV4cCI6MjAxMTA2MTI3OX0.RAzy6n71Wfv7CQi9acKyaqGy9YPAg4lSPpvfqcjbZik";
 
-  constructor(private router: Router,public btn:AlertController, private http: HttpClient) { }
+  constructor(private router: Router,
+              public btn:AlertController,
+              private http: HttpClient,
+              private dataServide: DataService) { }
 
   ngOnInit() {
   }
@@ -85,7 +89,13 @@ export class LoginPage implements OnInit {
 
         console.log("si coinciden");
 
+        this.dataServide.misDatos = res[0];
+
         this.router.navigate(['/home']);
+
+        this.loginuser.correo="";
+        this.loginuser.psw="";
+        this.loginuser.usuario="";
 
       } else {
 
@@ -112,7 +122,13 @@ export class LoginPage implements OnInit {
 
         console.log("si coinciden");
 
+        this.dataServide.misDatos = res[0];
+
         this.router.navigate(['/home']);
+
+        this.loginuser.correo="";
+        this.loginuser.psw="";
+        this.loginuser.usuario="";
 
       } else  {
 
