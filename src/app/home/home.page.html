@@ -7,7 +7,9 @@
       <ion-title>Uber Duoc</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">Bienvenido</ion-content>
+  <ion-content class="ion-padding" *ngIf="userLogin.nombre">
+    <div>Bienvenido, {{ this.userLogin.nombre }}.</div>
+  </ion-content>
   
 </div>
 
