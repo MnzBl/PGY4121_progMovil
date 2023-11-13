@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../basedatos/datosLogin';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { sbapikey, sburl } from '../basedatos/keys';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -22,10 +23,10 @@ export class HomePage implements OnInit {
 
   public bd = []
 
-  private sburl = "https://agjhsdqlwgqzokelqqrd.supabase.co";
+  private sburl = sburl;
 
-  private sbapikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnamhzZHFsd2dxem9rZWxxcXJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU0ODUyNzksImV4cCI6MjAxMTA2MTI3OX0.RAzy6n71Wfv7CQi9acKyaqGy9YPAg4lSPpvfqcjbZik";
-
+  private sbapikey = sbapikey;
+  
   constructor(private dataService: DataService,
     private router: Router,
     private http: HttpClient,
@@ -44,7 +45,7 @@ export class HomePage implements OnInit {
 
     const alert = await this.alertController.create({
 
-      header: "Al parecer no tienes una cuenta de Conductor ¿Quieres crear una?",
+      header: "Al parecer no tienes una cuenta de Pasajero ¿Quieres crear una?",
       buttons: [
         {
           text: 'Sí',
@@ -81,7 +82,7 @@ export class HomePage implements OnInit {
       this.bd=res;
       console.log(this.bd.length);
 
-      if(this.bd.length=0){
+      if(this.bd.length==0){
 
         this.alrPasajero();
 
@@ -92,6 +93,12 @@ export class HomePage implements OnInit {
       }
 
     });
+
+  }
+
+  fnCrearViajes(){
+
+    this.router.navigate(['/crear-viaje']);
 
   }
 

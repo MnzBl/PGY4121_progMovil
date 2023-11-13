@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { usuarios } from '../basedatos/lista';
 import { AlertController } from '@ionic/angular';
 import { loginInput } from './model/login.model';
+import { sbapikey, sburl } from '../basedatos/keys';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from '../basedatos/datosLogin';
@@ -28,9 +29,9 @@ export class LoginPage implements OnInit {
   }
 
 
-  private sburl = "https://agjhsdqlwgqzokelqqrd.supabase.co";
+  private sburl = sburl;
 
-  private sbapikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnamhzZHFsd2dxem9rZWxxcXJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU0ODUyNzksImV4cCI6MjAxMTA2MTI3OX0.RAzy6n71Wfv7CQi9acKyaqGy9YPAg4lSPpvfqcjbZik";
+  private sbapikey = sbapikey;
 
   constructor(private router: Router,
               public btn:AlertController,

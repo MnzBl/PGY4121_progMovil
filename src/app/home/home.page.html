@@ -8,7 +8,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding" *ngIf="userLogin.nombre">
-    <div>Bienvenido, {{ this.userLogin.nombre }}.</div>
+    <div>Bienvenido {{ this.userLogin.nombre }}.</div>
   </ion-content>
   
 </div>
@@ -16,7 +16,7 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     
-    <ion-tab-button>
+    <ion-tab-button (click)="fnCrearViajes()">
       <ion-icon name="reader-outline"></ion-icon>
       Iniciar Viaje
     </ion-tab-button>

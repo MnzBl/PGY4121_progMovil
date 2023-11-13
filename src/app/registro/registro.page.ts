@@ -5,6 +5,8 @@ import { registerInput } from './model/registro.model';
 import { usuarios } from '../basedatos/lista';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { sbapikey, sburl } from '../basedatos/keys';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-registro',
@@ -29,10 +31,10 @@ export class RegistroPage implements OnInit {
 
   public lista = usuarios;
 
-  private sburl = "https://agjhsdqlwgqzokelqqrd.supabase.co";
+  private sburl = sburl;
 
-  private sbapikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnamhzZHFsd2dxem9rZWxxcXJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU0ODUyNzksImV4cCI6MjAxMTA2MTI3OX0.RAzy6n71Wfv7CQi9acKyaqGy9YPAg4lSPpvfqcjbZik";
-
+  private sbapikey = sbapikey;
+  
   users = []
 
   constructor(public btn:AlertController, private router: Router,

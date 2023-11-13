@@ -1,0 +1,35 @@
+<ion-card class="card-box">
+
+  <ion-card-header class="center-card">
+
+    <ion-card-title>Crear viaje</ion-card-title>
+
+  </ion-card-header>
+
+  <ion-card-content>
+
+    <ion-input>Inicio del viaje</ion-input>
+    <ion-input>Llegada del viaje</ion-input>
+    <ion-input>Tarifa</ion-input>
+    <ion-input>Hora salida</ion-input>
+
+    <br>
+    <br>
+
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        
+        <ion-button>
+          Confirmar
+        </ion-button>
+    
+        <ion-button (click)="fnsalir()">
+          Cancelar
+        </ion-button>
+        
+      </ion-tab-bar>
+    </ion-tabs>
+
+  </ion-card-content>
+
+</ion-card>
