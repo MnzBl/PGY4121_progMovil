@@ -8,10 +8,10 @@
 
   <ion-card-content>
 
-    <ion-input>Inicio del viaje</ion-input>
-    <ion-input>Llegada del viaje</ion-input>
-    <ion-input>Tarifa</ion-input>
-    <ion-input>Hora salida</ion-input>
+    <ion-input [(ngModel)]="viaje.trayecto_i">Inicio del viaje</ion-input>
+    <ion-input [(ngModel)]="viaje.trayecto_f">Llegada del viaje</ion-input>
+    <ion-input [(ngModel)]="viaje.tarifa">Tarifa</ion-input>
+    <ion-input [(ngModel)]="viaje.hora">Hora salida</ion-input>
 
     <br>
     <br>
@@ -19,7 +19,7 @@
     <ion-tabs>
       <ion-tab-bar slot="bottom">
         
-        <ion-button>
+        <ion-button (click)="fnguardarviaje()">
           Confirmar
         </ion-button>
     

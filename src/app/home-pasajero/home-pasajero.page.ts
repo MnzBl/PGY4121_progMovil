@@ -97,4 +97,10 @@ export class HomePasajeroPage implements OnInit {
 
   }
 
+  fnBuscarViajes(){
+
+    this.router.navigate(['/buscar-viajes']);
+
+  }
+
 }

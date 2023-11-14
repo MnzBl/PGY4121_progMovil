@@ -37,8 +37,9 @@ export class RegistroPage implements OnInit {
   
   users = []
 
-  constructor(public btn:AlertController, private router: Router,
-    private http: HttpClient) { }
+  constructor(public btn:AlertController,
+              private router: Router,
+              private http: HttpClient) { }
 
   ngOnInit() {
 
