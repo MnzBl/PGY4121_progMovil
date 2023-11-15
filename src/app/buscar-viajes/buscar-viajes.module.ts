@@ -15,6 +15,6 @@ import { BuscarViajesPage } from './buscar-viajes.page';
     IonicModule,
     BuscarViajesPageRoutingModule
   ],
-  declarations: [BuscarViajesPage]
+  providers: [BuscarViajesPage]
 })
 export class BuscarViajesPageModule {}

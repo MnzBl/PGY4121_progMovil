@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { usuarios } from '../basedatos/lista';
 import { AlertController } from '@ionic/angular';
 import { loginInput } from './model/login.model';
 import { sbapikey, sburl } from '../basedatos/keys';
