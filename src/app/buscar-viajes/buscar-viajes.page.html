@@ -1,26 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title></ion-title>
+    <ion-title>
+      <ion-button (click)="fnvolver()" size="small">Volver</ion-button>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list >
-  <ion-card *ngFor="let trip of bdviajes">
+  <ion-card *ngFor="let viaje of bdviajes; let i=index" (click)="alrReservarCupo(i)">
     <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
     <ion-card-header>
       <ion-card-subtitle>
-        Salida: {{trip.trayecto_i}}
+        Salida: {{viaje.trayecto_i}}
         <br>
-        Hora salida: {{trip.hora}}
+        Hora salida: {{viaje.hora}}
         <br>
-        Llegada: {{trip.trayecto_f}}
+        Llegada: {{viaje.trayecto_f}}
       </ion-card-subtitle>
     </ion-card-header>
   
     <ion-card-content>
-      nombre conductor: {{trip.nombre}}
-      pasajes disponibles: {{trip.cupos}}
+      Nombre conductor: {{viaje.nombre}}
+      <br>
+      Pasajes disponibles: {{viaje.cupos}}
     </ion-card-content>
   </ion-card>
 </ion-list>

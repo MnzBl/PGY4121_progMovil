@@ -90,6 +90,7 @@ export class LoginPage implements OnInit {
         console.log("si coinciden");
 
         this.dataService.misDatos = res[0];
+        console.log(this.dataService.misDatos.id_pasajero)
 
         this.router.navigate(['/home-pasajero']);
 
@@ -123,6 +124,7 @@ export class LoginPage implements OnInit {
         console.log("si coinciden");
 
         this.dataService.misDatos = res[0];
+        console.log(this.dataService.misDatos.id_pasajero)
 
         this.router.navigate(['/home']);
 

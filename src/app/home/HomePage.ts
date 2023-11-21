@@ -64,7 +64,7 @@ export class HomePage implements OnInit {
 
   fnLogOut() {
 
-    this.dataService.reserMisDatos();
+    this.dataService.resetMisDatos();
     this.router.navigate(['/login']);
 
   }
@@ -89,6 +89,9 @@ export class HomePage implements OnInit {
       } else {
 
         this.router.navigate(['/home-pasajero']);
+        console.log(this.dataService.misDatos)
+        this.dataService.misDatos = res[0];
+        console.log(this.dataService.misDatos)
 
       }
 

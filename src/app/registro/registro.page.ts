@@ -6,7 +6,6 @@ import { usuarios } from '../basedatos/lista';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { sbapikey, sburl } from '../basedatos/keys';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-registro',
