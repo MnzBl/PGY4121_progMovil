@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, QueryList } from '@angular/core';
 import { sbapikey, sburl } from '../basedatos/keys';
 import { IbuscarViaje } from './modulo/modulo';
 import { AlertController, NavController } from '@ionic/angular';
@@ -10,6 +10,10 @@ import { DataService } from '../basedatos/datosLogin';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
+import * as L from 'leaflet';
+import 'leaflet-routing-machine';
+import { tileLayer } from 'leaflet';
+
 @Component({
   standalone: true,
   selector: 'app-buscar-viajes',
@@ -19,6 +23,8 @@ import { IonicModule } from '@ionic/angular';
 })
 export class BuscarViajesPage implements OnInit {
 
+  @ViewChild('map', { read: ElementRef }) mapElements!: QueryList<ElementRef>;
+  
   public bdviajes: IbuscarViaje[] = [];
 
   private sburl = sburl;
@@ -32,6 +38,8 @@ export class BuscarViajesPage implements OnInit {
 
   }
 
+  private map : any;
+
   constructor(private http: HttpClient,
               private dataService: DataService,
               public alertController:AlertController,
@@ -41,10 +49,49 @@ export class BuscarViajesPage implements OnInit {
   ngOnInit() {{}
 
   }
+
+  //cargarMapa(){
+
+  //  if(this.mapContainer){
+
+  //    const map = L.map(this.mapContainer.nativeElement).setView([-33.031644, -71.531004], 13);    
+      
+  //    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //    attribution: '© OpenStreetMap contributors',
+  //    }).addTo(map);
+
+  //  }
+
+  //}
+
+  //cargarMapaYRuta(){
+
+  //  if(this.mapContainer){
+
+  //  const map = L.map(this.mapContainer.nativeElement).setView([-33.031644, -71.531004], 13);
+
+  //  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //    attribution: '© OpenStreetMap contributors',
+  //  }).addTo(map);
+
+  //  this.bdviajes.forEach((viaje) => {
+  //    this.mostrarRutaEnMapa(map, viaje);
+  //  });
+  //}
+  //}
+
+  //mostrarRutaEnMapa(map: L.Map, viaje: IbuscarViaje) {
+  //  const start = L.latLng(viaje.lat_i, viaje.lon_i);
+  //  const end = L.latLng(viaje.lat_f, viaje.lon_f);
+
+  //  L.Routing.control({
+  //    waypoints: [start, end],
+  //    routeWhileDragging: true,
+  //  }).addTo(map);
+  //}
   
 
   async alrReservarCupo(i: number){
-
 
     const alert = await this.alertController.create({
 
@@ -114,6 +161,24 @@ export class BuscarViajesPage implements OnInit {
 
     this.fnbuscarviajes();
 
+  //  this.cargarMapa();
+
   }
+
+  ngAfterViewInit() {   
+
+  if (this.mapElements && this.mapElements.length > 0) {
+
+    this.mapElements.forEach((mapElement, index) => {
+      const map = new L.Map(mapElement.nativeElement).setView([-33.031644, -71.531004], 13);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+    });
+  } else {
+    console.error('No se encontraron elementos de mapa.');
+  }
+}
 
 }

@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true">
   <ion-list >
   <ion-card *ngFor="let viaje of bdviajes; let i=index" (click)="alrReservarCupo(i)">
-    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    <div [attr.id]="'map' + i" style="height: 200px;"></div>
     <ion-card-header>
       <ion-card-subtitle>
         Salida: {{viaje.trayecto_i}}

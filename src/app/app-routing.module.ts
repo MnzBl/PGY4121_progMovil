@@ -43,7 +43,11 @@ const routes: Routes = [
   {
     path: 'buscar-viajes',
     loadChildren: () => import('./buscar-viajes/buscar-viajes.module').then( m => m.BuscarViajesPageModule)
+  },  {
+    path: 'mapa',
+    loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
   },
+
 
 
 ];
