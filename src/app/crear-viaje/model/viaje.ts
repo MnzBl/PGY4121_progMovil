@@ -4,4 +4,8 @@ export interface viajesInput {
     tarifa: number;
     hora: string;
     id_conductor: number;
+    lat_i: number;
+    lon_i: number;
+    lat_f: number;
+    lon_f: number;
 }

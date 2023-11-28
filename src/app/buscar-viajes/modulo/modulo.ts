@@ -7,5 +7,9 @@ export interface IbuscarViaje {
     cupos: number;
     id_conductor: number;
     id_viaje: number;
+    lat_i: number;
+    lon_i: number;
+    lat_f: number;
+    lon_f: number;
 
   }
