@@ -12,7 +12,11 @@ import { DataService } from './basedatos/datosLogin';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule,
+            IonicModule.forRoot({rippleEffect: false,
+                                mode: 'md'}),
+            AppRoutingModule,
+            HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, [DataService]],
   bootstrap: [AppComponent],
 })
