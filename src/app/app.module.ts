@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { DataService } from './basedatos/datosLogin';
 
+import { GoogleMaps } from '@ionic-native/google-maps/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,
