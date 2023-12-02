@@ -7,13 +7,13 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
-import { format } from 'date-fns';
 import { sbapikey, sburl } from '../basedatos/keys';
 import { IbuscarViaje } from './modulo/modulo';
 
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
+import { format } from 'date-fns';
 import * as L from 'leaflet';
 import { DataService } from '../basedatos/datosLogin';
 
@@ -133,17 +133,19 @@ export class BuscarViajesPage implements OnInit {
   }
 
   fnbuscarviajes() {
-    const fecha = new Date();
-
-    const fechaFormato = format(fecha, 'dd/MM/yy');
-
+    const now = new Date();
+    const nowDate = format(now, 'dd/MM/yy');
     const headers = { apikey: this.sbapikey };
-
-    const url = sburl + '/rest/v1/datos_viaje?fecha=eq.' + fechaFormato;
+    const url = sburl + '/rest/v1/datos_viaje';
 
     this.http.get<IbuscarViaje[]>(url, { headers }).subscribe((res) => {
-      console.log(res);
-      this.bdviajes = res;
+      this.bdviajes = res.filter((viaje) => {
+        const fecha = new Date(viaje.fecha);
+        const fechaStr = `${fecha.getDate().toString().padStart(2, '0')}/${
+          fecha.getMonth() + 1
+        }/${fecha.getFullYear().toString().substring(2)}`;
+        return fechaStr === nowDate;
+      });
     });
   }
 
